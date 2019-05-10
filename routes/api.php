@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 
 Route::get('post', function () {
-    return response(App\Post::with('author')->get());
+    return response(App\Post::with('author')->paginate(10));
 });
 
 Route::get('post/{id}', function($id){
@@ -39,11 +39,11 @@ Route::get('post_byauthor/{id}', function($id){
 });
 
 Route::get('author', function(){
-    return response(App\Author::all());
+    return response(App\Author::paginate(10));
 });
 
 Route::get('comment', function(){
-    return response(App\Comment::with('post')->get());
+    return response(App\Comment::with('post')->paginate(10));
 });
 
 Route::get('comment_bypost/{id}', function($id){
